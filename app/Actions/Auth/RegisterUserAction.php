@@ -11,23 +11,19 @@ class RegisterUserAction
 {
     public function execute(array $data)
     {
-        try {
-            $user = User::create([
-                'name' => $data['name'],
-                'email' => $data['email'],
-                'password' => Hash::make($data['password']),
-                'role' => UserRole::CUSTOMER,
-                'is_active' => true,
-            ]);
-            $token = $user->createToken('auth-token')->plainTextToken;
+        $user = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'role' => UserRole::CUSTOMER,
+            'is_active' => true,
+        ]);
+        $token = $user->createToken('auth-token')->plainTextToken;
 
 
-            return [
-                'user' => $user,
-                'token' => $token,
-            ];
-        } catch (Exception $e) {
-            throw new Exception($e->getMessage());
-        }
+        return [
+            'user' => $user,
+            'token' => $token,
+        ];
     }
 }
