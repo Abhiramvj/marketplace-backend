@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\AddressLabel;
 use Illuminate\Database\Eloquent\Model;
 
 class Address extends Model
@@ -10,6 +11,7 @@ class Address extends Model
         'user_id',
         'full_name',
         'phone',
+        'label',
         'address_line1',
         'address_line2',
         'city',
@@ -17,6 +19,10 @@ class Address extends Model
         'postal_code',
         'country',
         'is_default',
+    ];
+
+    protected $casts = [
+        'label' => AddressLabel::class
     ];
 
     public function user()

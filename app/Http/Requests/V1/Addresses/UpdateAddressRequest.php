@@ -4,7 +4,7 @@ namespace App\Http\Requests\V1\Addresses;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreAddressRequest extends FormRequest
+class UpdateAddressRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,15 +22,15 @@ class StoreAddressRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'full_name' => 'required|string|max:255',
-            'phone' => 'required|string|max:20',
+            'full_name' => 'sometimes|required|string|max:255',
+            'phone' => 'sometimes|required|string|max:20',
             'label' => 'nullable|in:Home,Work',
-            'address_line1' => 'required|string|max:255',
+            'address_line1' => 'sometimes|required|string|max:255',
             'address_line2' => 'nullable|string|max:255',
-            'city' => 'required|string|max:100',
-            'state' => 'required|string|max:100',
-            'postal_code' => 'required|string|max:20',
-            'country' => 'required|string|max:100',
+            'city' => 'sometimes|required|string|max:100',
+            'state' => 'sometimes|required|string|max:100',
+            'postal_code' => 'sometimes|required|string|max:20',
+            'country' => 'sometimes|required|string|max:100',
             'is_default' => 'boolean',
         ];
     }
